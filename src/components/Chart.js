@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import PieChart from "./PieChart";
 
 function Chart(props) {
 
@@ -35,6 +36,7 @@ useEffect(()=>{
 					)}
 				</div>
 			</div>
+            <PieChart/>
 		</div>
 	);
 }
