@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { addPerson } from "./../store/reducers/Person";
 
-function Form() {
+function Form(props) {
 	//   firstname
 	const [firstName, setFirstName] = useState("");
 	//   lastname
@@ -10,25 +12,24 @@ function Form() {
 	//   city
 	const [city, setCity] = useState("");
 
-    function clearState(){
-        setFirstName("");
-        setLastName("");
-        setAge("");
-        setCity("");
-    }
+	function clearState() {
+		setFirstName("");
+		setLastName("");
+		setAge("");
+		setCity("");
+	}
 
 	function submitHandler(e) {
 		e.preventDefault();
-		const data = {
+		const newPerson = {
 			firstName: firstName,
 			lastName: lastName,
 			age: age,
 			city: city,
 		};
-        //? WORKING WITH STORE 
-        clearState();
+		props.addPerson(newPerson);
+		clearState();
 	}
-
 
 	return (
 		<div className="form">
@@ -79,4 +80,6 @@ function Form() {
 	);
 }
 
-export default Form;
+const mapDispatchToProps = { addPerson };
+
+export default connect(null, mapDispatchToProps)(Form);
