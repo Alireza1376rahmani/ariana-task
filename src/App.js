@@ -9,7 +9,7 @@ function App() {
         <Header/>
         <div className="container">
             <Form/>
-            {/* <Chart/> */}
+            <Chart/>
         </div>
     </div>
   );

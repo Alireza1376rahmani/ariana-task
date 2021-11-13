@@ -32,7 +32,7 @@ function Form(props) {
 	}
 
 	return (
-		<div className="form">
+		<div id="form" className="form">
 			<form action="/" onSubmit={submitHandler}>
 				<input
 					type="text"

@@ -16,11 +16,26 @@ body{
     margin: 0px 20px;
 }
 
-form input {
+#form form input {
     display: block;
 }
 
+#chart .header.row{
+    font-weight: bold;
+    font-size: larger;
+}
 
+#chart .row{
+    display: flex;
+    text-align: center;
+}
 
+#chart .row .fname,
+#chart .row .lname,
+#chart .row .city{
+    flex: 2;
+}
 
-
+#chart .row .age{
+    flex: 1;
+}
