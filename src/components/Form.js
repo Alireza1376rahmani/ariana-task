@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { addPerson } from "./../store/reducers/Person";
+import { addPerson, editPerson } from "./../store/reducers/Person";
 
 function Form(props) {
 	//   firstname
-	const [firstName, setFirstName] = useState("");
+	const [firstName, setFirstName] = useState(
+		props.isForEdit ? props.person.firstName : ""
+	);
 	//   lastname
-	const [lastName, setLastName] = useState("");
+	const [lastName, setLastName] = useState(
+		props.isForEdit ? props.person.lastName : ""
+	);
 	//   age
-	const [age, setAge] = useState("");
+	const [age, setAge] = useState(props.isForEdit ? props.person.age : "");
 	//   city
-	const [city, setCity] = useState("");
+	const [city, setCity] = useState(props.isForEdit ? props.person.city : "");
 
 	function clearState() {
 		setFirstName("");
@@ -31,9 +35,24 @@ function Form(props) {
 		clearState();
 	}
 
+	function editHandler(e) {
+		e.preventDefault();
+		const newPerson = {
+			id: props.person.id,
+			firstName: firstName,
+			lastName: lastName,
+			age: age,
+			city: city,
+		};
+		props.editPerson(newPerson);
+	}
+
 	return (
 		<div id="form" className="form">
-			<form action="/" onSubmit={submitHandler}>
+			<form
+				action="/"
+				onSubmit={props.isForEdit ? editHandler : submitHandler}
+			>
 				<input
 					type="text"
 					id="firstName"
@@ -74,12 +93,16 @@ function Form(props) {
 						setCity(e.target.value);
 					}}
 				/>
-				<input type="submit" />
+				<input
+					className="btn"
+					type="submit"
+					value={props.isForEdit ? "Edit" : "Submit"}
+				/>
 			</form>
 		</div>
 	);
 }
 
-const mapDispatchToProps = { addPerson };
+const mapDispatchToProps = { addPerson, editPerson };
 
 export default connect(null, mapDispatchToProps)(Form);

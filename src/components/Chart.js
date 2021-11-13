@@ -1,16 +1,14 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import PieChart from "./PieChart";
+import Row from "./Row";
+import { deletePerson, editPerson } from "./../store/reducers/Person";
 
 function Chart(props) {
-
-
-useEffect(()=>{
-    console.log("chart component")
-    console.log(props)
-    
-})
-
+	useEffect(() => {
+		console.log("chart component");
+		console.log(props);
+	});
 
 	return (
 		<div id="chart" className="chart">
@@ -23,20 +21,13 @@ useEffect(()=>{
 				</div>
 				<div className="data">
 					{props.persons ? (
-						props.persons.map((person) => (
-							<div className="row">
-								<div className="fname">{person.firstName}</div>
-								<div className="lname">{person.lastName}</div>
-								<div className="age">{person.age}</div>
-								<div className="city">{person.city}</div>
-							</div>
-						))
+						props.persons.map((person) => <Row person={person} />)
 					) : (
 						<div>There is no data ... </div>
 					)}
 				</div>
 			</div>
-            <PieChart/>
+			<PieChart />
 		</div>
 	);
 }
@@ -46,5 +37,11 @@ function mapStateToProps(state) {
 		persons: state.person.persons,
 	};
 }
+
+// function mapDispatchToProps(dispatch){
+//     return{
+//         editPerson: ()=>{dispatch(editPerson)}
+//     }
+// }
 
 export default connect(mapStateToProps, null)(Chart);

@@ -16,8 +16,10 @@ body{
     margin: 0px 20px;
 }
 
-#form form input {
+#form form input , button{
     display: block;
+    margin: 5px;
+    padding:5px;
 }
 
 #chart .header.row{
@@ -39,3 +41,24 @@ body{
 #chart .row .age{
     flex: 1;
 }
+
+#chart .bg {
+    position: fixed;
+    top: 0;
+    left:0;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(99, 99, 99, 0.3);
+    z-index: 40;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#chart .bg .modal{
+    width: 500px;
+    height: 400px;
+    background-color: white;
+    padding: 20px;
+}
+
