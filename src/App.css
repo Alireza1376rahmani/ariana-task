@@ -1,64 +1,72 @@
-*{
-    margin: 0;
-    padding: 0;
-    border: 1px dotted #777777;
+* {
+	margin: 0;
+	padding: 0;
+	border: 1px dotted #777777;
 }
 
-body{
-    font-family: "comic sans ms";
+body {
+	font-family: "comic sans ms";
 }
 
-.header .navbar{
-    display: flex;
+.header .navbar {
+	display: flex;
 }
 
-.header .navbar nav{
-    margin: 0px 20px;
+.header .navbar nav {
+	margin: 0px 20px;
 }
 
-#form form input , button{
-    display: block;
-    margin: 5px;
-    padding:5px;
+#form form input,
+button {
+	display: block;
+	margin: 5px;
+	padding: 5px;
 }
 
-#chart .header.row{
-    font-weight: bold;
-    font-size: larger;
+#chart .header.row {
+	font-weight: bold;
+	font-size: larger;
 }
 
-#chart .row{
-    display: flex;
-    text-align: center;
+#chart .header.row :hover {
+	opacity: 1;
+}
+
+#chart .row {
+	display: flex;
+	text-align: center;
+}
+
+#chart .row :hover {
+	opacity: 0.6;
 }
 
 #chart .row .fname,
 #chart .row .lname,
-#chart .row .city{
-    flex: 2;
+#chart .row .city {
+	flex: 2;
 }
 
-#chart .row .age{
-    flex: 1;
+#chart .row .age {
+	flex: 1;
 }
 
 #chart .bg {
-    position: fixed;
-    top: 0;
-    left:0;
-    height: 100vh;
-    width: 100vw;
-    background-color: rgba(99, 99, 99, 0.3);
-    z-index: 40;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 100vh;
+	width: 100vw;
+	background-color: rgba(99, 99, 99, 0.3);
+	z-index: 40;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
-#chart .bg .modal{
-    width: 500px;
-    height: 400px;
-    background-color: white;
-    padding: 20px;
+#chart .bg .modal {
+	width: 500px;
+	height: 400px;
+	background-color: white;
+	padding: 20px;
 }
-
