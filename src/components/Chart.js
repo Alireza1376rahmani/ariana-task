@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import PieChart from "./PieChart";
 import Row from "./Row";
-import { deletePerson, editPerson } from "./../store/reducers/Person";
 
 function Chart(props) {
 	useEffect(() => {
