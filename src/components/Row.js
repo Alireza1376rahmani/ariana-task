@@ -12,12 +12,11 @@ function Row(props) {
 	}
 
 	function deleteHandler(e) {
-		console.log("5");
+		props.deletePerson(props.person)
 	}
 
 	function cancelHandler(e) {
 		setExpand(false);
-		console.log("5");
 	}
 
 	return (
