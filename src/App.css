@@ -28,17 +28,10 @@ button {
 	font-size: larger;
 }
 
-#chart .header.row :hover {
-	opacity: 1;
-}
 
 #chart .row {
 	display: flex;
 	text-align: center;
-}
-
-#chart .row :hover {
-	opacity: 0.6;
 }
 
 #chart .row .fname,
@@ -63,6 +56,7 @@ button {
 	justify-content: center;
 	align-items: center;
 }
+
 
 #chart .bg .modal {
 	width: 500px;

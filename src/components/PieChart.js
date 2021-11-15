@@ -1,90 +1,66 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Highcharts from "highcharts";
 import HighchartsReact from "highcharts-react-official";
+import { connect } from "react-redux";
 
 function PieChart(props) {
-	const options = {
+	const [data, setData] = useState(
+		makeData(props.persons.map((p) => p.city))
+	);
+	const [allowChartUpdate, setAllowChartUpdate] = useState(false);
+	const [options, setOptions] = useState({
 		chart: {
-			plotBackgroundColor: null,
-			plotBorderWidth: null,
-			plotShadow: false,
-			type: "Pie",
+			type: "pie",
 		},
 		title: {
 			text: "My chart",
 		},
-		tooltip: {
-			pointFormat: "{series.name}: <b>{point.percentage:.1f}%</b>",
-		},
-		accessibility: {
-			point: {
-				valueSuffix: "%",
+		series: [
+			{
+				data: data,
 			},
-		},
-		plotOptions: {
-			series: [
-				{
-					name: "Brands",
-					colorByPoint: true,
-					data: [
-						{
-							name: "Chrome",
-							y: 61.41,
-							sliced: true,
-							selected: true,
-						},
-						{
-							name: "Internet Explorer",
-							y: 11.84,
-						},
-						{
-							name: "Firefox",
-							y: 10.85,
-						},
-						{
-							name: "Edge",
-							y: 4.67,
-						},
-						{
-							name: "Safari",
-							y: 4.18,
-						},
-						{
-							name: "Sogou Explorer",
-							y: 1.64,
-						},
-						{
-							name: "Opera",
-							y: 1.6,
-						},
-						{
-							name: "QQ",
-							y: 1.2,
-						},
-						{
-							name: "Other",
-							y: 2.61,
-						},
-					],
-				},
-			],
-			pie: {
-				allowPointSelect: true,
-				cursor: "pointer",
-				dataLabels: {
-					enabled: true,
-					format: "<b>{point.name}</b>: {point.percentage:.1f} %",
-				},
-			},
-		},
-        
-	};
+		],
+	});
+
+	function makeData(list) {
+		let arr = [];
+		for (let i = 0; i < list.length; i++) {
+			let num = 1;
+			for (let j = i + 1; j < list.length; j++) {
+				if (list[i] === list[j]) {
+					num++;
+					list.splice(j, 1);
+					console.log("yo");
+					// j--;
+				}
+			}
+			arr.push([list[i], num]);
+		}
+		console.log(arr);
+		return arr;
+	}
+
+	useEffect(() => {
+		setData(props.persons.map((p) => p.city));
+		setAllowChartUpdate(true);
+		console.log(data);
+	}, [props.persons]);
 
 	return (
 		<div className="piechart">
-			<HighchartsReact highcharts={Highcharts} options={options} />
+			<HighchartsReact
+				highcharts={Highcharts}
+				options={options}
+				allowChartUpdate={allowChartUpdate}
+			/>
 		</div>
 	);
 }
 
-export default PieChart;
+function mapStateToProps(state) {
+	return {
+		persons: state.person.persons,
+	};
+}
+
+export default connect(mapStateToProps, null)(PieChart);
